@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+npm run dev
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -71,3 +73,29 @@ export default defineConfig([
   },
 ])
 ```
+
+
+
+Application Diet Vic:
+	◦	Jauge de motivation : qui augmente avec le nombre de jours sans craquage et diminue en fonction du type de craquage (ex: -5 points si un dessert en trop et +1 point par jour nickel)
+	◦	Jauge objectif poids : à placer à côté de la jauge motivation
+	◦	Tracking alimentation simplifiée : repas sain, repas calorique, dessert, alcool
+	◦	Semainier avec indicateur de performance : vert si que des repas sains, jaune avec emoji alcool pour le jour de soirée, rouge si craquage
+
+	◦	Notification motivation + rappel saisie
+	◦	Poids à renseigner manuellement 
+	◦	Page de suivi par graphique : poids + mensuration 
+	◦	Photos avant/après 
+	◦	Page de conseils nutrition de Claude
+	◦	Tracking conso eau
+
+Règles alimentation :
+	⁃	1 dessert par semaine
+	⁃	1 repas cheatmeal par semaine
+	⁃	1 soirée alcoolisée par semaine
+	⁃	Zéro pain
+	⁃	Zéro entrée
+	⁃	Zéro fromage en dehors des plats
+	⁃	Zéro grignotage
+	⁃	Dessert : fruits illimités ou 1 morceau de chocolat
+	⁃	Petit déjeuner avant 9H
