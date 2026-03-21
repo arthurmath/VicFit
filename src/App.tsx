@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabase'
 import HomePage from '@/components/HomePage'
 import BottomNav from '@/components/BottomNav'
 import AuthScreen from '@/components/AuthScreen'
+import type { User } from '@supabase/supabase-js'
 
 function Background() {
   return (
@@ -13,25 +15,26 @@ function Background() {
 }
 
 export default function App() {
-  const [userEmail, setUserEmail] = useState<string | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem('userEmail')
-    if (storedEmail) {
-      setUserEmail(storedEmail)
-    }
-    setLoading(false)
+    // Vérifie s'il y a déjà une session active au lancement
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null)
+      setLoading(false)
+    })
+
+    // Écoute les changements de connexion/déconnexion
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => subscription.unsubscribe()
   }, [])
 
-  function handleLogin(email: string) {
-    localStorage.setItem('userEmail', email)
-    setUserEmail(email)
-  }
-
-  function handleLogout() {
-    localStorage.removeItem('userEmail')
-    setUserEmail(null)
+  async function handleLogout() {
+    await supabase.auth.signOut()
   }
 
   if (loading) {
@@ -43,11 +46,11 @@ export default function App() {
     )
   }
 
-  if (!userEmail) {
+  if (!user) {
     return (
       <div className="max-w-md mx-auto relative min-h-screen">
         <Background />
-        <AuthScreen onLogin={handleLogin} />
+        <AuthScreen />
       </div>
     )
   }
@@ -55,7 +58,7 @@ export default function App() {
   return (
     <div className="max-w-md mx-auto relative min-h-screen">
       <Background />
-      <HomePage userId={userEmail} userEmail={userEmail} onLogout={handleLogout} />
+      <HomePage userId={user.id} userEmail={user.email || ''} onLogout={handleLogout} />
       <BottomNav />
     </div>
   )

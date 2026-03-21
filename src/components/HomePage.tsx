@@ -186,17 +186,20 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
     const fetchEnd = new Date(year, month + 1, 0)
     fetchEnd.setDate(fetchEnd.getDate() + 7)
 
-    const [{ data: entryData }, { data: weightData }] = await Promise.all([
+    const [entriesRes, weightRes] = await Promise.all([
       supabase.from('daily_entries').select('*').gte('date', localDate(fetchStart)).lte('date', localDate(fetchEnd)),
       supabase.from('weight_entries').select('weight').order('date', { ascending: false }).limit(1).single(),
     ])
 
-    if (entryData) {
+    if (entriesRes.error) console.error("Erreur chargement daily_entries:", entriesRes.error)
+    if (weightRes.error) console.error("Erreur chargement weight_entries:", weightRes.error)
+
+    if (entriesRes.data) {
       const map: Record<string, DailyEntry> = {}
-      for (const e of entryData) map[e.date] = e as DailyEntry
+      for (const e of entriesRes.data) map[e.date] = e as DailyEntry
       setEntries(map)
     }
-    if (weightData) setLatestWeight(weightData.weight)
+    if (weightRes.data) setLatestWeight(weightRes.data.weight)
 
     await loadStreak()
   }
@@ -205,11 +208,13 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
     const ninetyAgo = new Date()
     ninetyAgo.setDate(ninetyAgo.getDate() - 90)
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('daily_entries')
       .select('*')
       .gte('date', localDate(ninetyAgo))
       .order('date', { ascending: true })
+
+    if (error) console.error("Erreur chargement streak:", error)
 
     if (!data || data.length === 0) { setStreak(0); return }
 
@@ -271,7 +276,13 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
       sport: editEntry.sport,
     }
 
-    await supabase.from('daily_entries').upsert(payload, { onConflict: 'user_id,date' })
+    const { error } = await supabase.from('daily_entries').upsert(payload, { onConflict: 'user_id,date' })
+    
+    if (error) {
+      console.error('Erreur Supabase lors de la sauvegarde:', error)
+      alert(`Erreur lors de la sauvegarde: ${error.message}`)
+    }
+
     await loadData()
     setSelectedDate(null)
     setEditEntry(null)
@@ -316,7 +327,7 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-semibold text-gray-700">🔥 Motivation</span>
-            <span className="text-xl font-bold text-orange-500">
+            <span className="text-xl font-bold text-green-500">
               {streak} <span className="text-sm font-medium text-gray-400">jours</span>
             </span>
           </div>
@@ -471,7 +482,7 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
               {([
                 ['sain', 'Sain ✅', 'bg-emerald-500 text-white shadow-emerald-200'],
                 ['pas_sain', 'Pas Sain ❌', 'bg-rose-500 text-white shadow-rose-200'],
-                ['skip', 'Pas de Petit Déj ⏭️', 'bg-gray-500 text-white shadow-gray-200'],
+                ['skip', 'Sauté ⏭️', 'bg-gray-500 text-white shadow-gray-200'],
               ] as const).map(([val, label, active]) => (
                 <Tag
                   key={val}

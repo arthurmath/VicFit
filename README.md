@@ -1,6 +1,20 @@
-# React + TypeScript + Vite
 
-npm run dev
+
+
+Setup : npm run dev
+
+Local : http://localhost:5173/
+
+Prod : https://vicfitvic.vercel.app/
+
+Vercel : https://vercel.com/arthurmaths-projects/vicfit
+
+Supabase : https://supabase.com/dashboard/project/
+
+
+
+
+# React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
