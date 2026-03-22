@@ -39,22 +39,28 @@ const QUOTES = [
   "You won't always have motivation, so you must have discipline.",
   "T'es la plus belle !",
   "Tu ne regrettes jamais une séance de sport.",
+  "Vic t'es la plus fit !",
   "Un esprit sain dans un corps sain.",
   "Trop facile le yoga !",
   "La sueur d'aujourd'hui est le sourire de demain.",
-  "Un pas à la fois, mais toujours vers l'avant.",
+  "Déso Brad Pitt, cette beauté est déjà prise",
   "Tu va retourner ta séance de pilates !",
+  "Un pas à la fois, mais toujours vers l'avant.",
   "Bientot le marathon ?",
   "Ralenti, j'arrive déjà plus à courir aussi vite que toi !",
   "Tu vas être la plus belle de ton club de yoga !",
-  "Je suis fier de toi !",
+  "Je suis fier de toi",
   "Tout Hermès va être jaloux de toi !",
+  "Oh le summer body de dingue !",
   "Aujourd'hui, c'est grande Victoire !",
   "Ceux qui vivent sont ceux qui luttent.",
+  "Je pense à toi <3",
   "Réveille-toi avec détermination, endors-toi avec satisfaction.",
+  "Go Go Go !!",
+  "Attention Kylie Jenner est jalouse !",
   "Le seul mauvais entraînement est celui que tu ne fais pas.",
-  "No pain no gain.",
   "Miaou miaou (c'est Rouxie qui t'encourage)",
+  "Tu sera la plus belle à la plage cet été !",
 ]
 
 const DAY_LABELS = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
@@ -169,7 +175,7 @@ export default function HomePage({ userId, userEmail, onLogout, onNavigateToProg
   }, [currentMonthDate])
 
   const now = new Date()
-  const greeting = now.getHours() < 12 ? 'Good morning' : now.getHours() < 18 ? 'Hello' : 'Hi'
+  const greeting = now.getHours() < 12 ? 'Bonjour' : now.getHours() < 18 ? 'Bonne après-midi' : 'Bonsoir'
   const displayName = userEmail
     .split('@')[0]
     .split(/[._-]/)[0]
