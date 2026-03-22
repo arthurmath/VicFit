@@ -62,12 +62,6 @@ export default function ProgressPage({ userId }: ProgressPageProps) {
 
     setSaving(true)
 
-    const payload = {
-      user_id: userId,
-      date: inputDate,
-      weight: weightNum,
-    }
-
     const { data: existing } = await supabase
       .from('weight_entries')
       .select('id')
