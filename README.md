@@ -90,18 +90,20 @@ export default defineConfig([
 
 
 
-Application Diet Vic:
+Done :
 	◦	Jauge de motivation : qui augmente avec le nombre de jours sans craquage et diminue en fonction du type de craquage (ex: -5 points si un dessert en trop et +1 point par jour nickel)
 	◦	Jauge objectif poids : à placer à côté de la jauge motivation
 	◦	Tracking alimentation simplifiée : repas sain, repas calorique, dessert, alcool
 	◦	Semainier avec indicateur de performance : vert si que des repas sains, jaune avec emoji alcool pour le jour de soirée, rouge si craquage
-
-	◦	Notification motivation + rappel saisie
 	◦	Poids à renseigner manuellement 
-	◦	Page de suivi par graphique : poids + mensuration 
-	◦	Photos avant/après 
-	◦	Page de conseils nutrition de Claude
+  ◦	Page de suivi par graphique : poids
+
+To do:
+	◦	Notification motivation + rappel saisie 
+	◦	Page de conseils nutrition de Claude + regles
 	◦	Tracking conso eau
+  ◦	Mensurations ?
+	◦	Photos avant/après 
 
 Règles alimentation :
 	⁃	1 dessert par semaine

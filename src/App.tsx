@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import HomePage from '@/components/HomePage'
-import BottomNav from '@/components/BottomNav'
+import BottomNav, { type TabId } from '@/components/BottomNav'
 import AuthScreen from '@/components/AuthScreen'
+import ProgressPage from '@/components/ProgressPage'
 import type { User } from '@supabase/supabase-js'
 
 function Background() {
@@ -17,6 +18,7 @@ function Background() {
 export default function App() {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState<TabId>('home')
 
   useEffect(() => {
     // Vérifie s'il y a déjà une session active au lancement
@@ -58,8 +60,25 @@ export default function App() {
   return (
     <div className="max-w-md mx-auto relative min-h-screen">
       <Background />
-      <HomePage userId={user.id} userEmail={user.email || ''} onLogout={handleLogout} />
-      <BottomNav />
+      {activeTab === 'home' && (
+        <HomePage 
+          userId={user.id} 
+          userEmail={user.email || ''} 
+          onLogout={handleLogout} 
+          onNavigateToProgress={() => setActiveTab('progress')}
+        />
+      )}
+      {activeTab === 'progress' && (
+        <ProgressPage userId={user.id} />
+      )}
+      {/* Autres pages à venir */}
+      {['nutrition', 'sport', 'profile'].includes(activeTab) && (
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-white text-lg font-medium drop-shadow-md">Page en construction 🚧</p>
+        </div>
+      )}
+      
+      <BottomNav activeTab={activeTab} onChange={setActiveTab} />
     </div>
   )
 }

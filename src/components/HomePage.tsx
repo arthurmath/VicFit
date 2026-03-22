@@ -25,6 +25,7 @@ interface HomePageProps {
   userId: string
   userEmail: string
   onLogout: () => void
+  onNavigateToProgress: () => void
 }
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -35,27 +36,25 @@ const START_WEIGHT = 68
 const QUOTES = [
   "Allez ma grande !",
   "T'es trop forte !",
-  "Aujourd'hui, c'est grande Victoire !",
-  "Le corps atteint ce que l'esprit croit.",
-  "Chaque jour est une nouvelle chance de changer ta vie.",
-  "La discipline est le pont entre tes objectifs et tes accomplissements.",
-  "La seule mauvaise séance est celle qui n'a pas eu lieu.",
-  "Ton corps peut tout supporter. C'est ton esprit que tu dois convaincre.",
-  "Sois plus forte que tes excuses.",
-  "Petit à petit, l'oiseau fait son nid.",
-  "La constance bat le talent quand le talent n'est pas constant.",
+  "You won't always have motivation, so you must have discipline.",
+  "T'es la plus belle !",
   "Tu ne regrettes jamais une séance de sport.",
-  "Prends soin de ton corps, c'est le seul endroit où tu es obligée de vivre.",
-  "Chaque repas sain est un pas de plus vers ton objectif.",
-  "La motivation te fait commencer, l'habitude te fait continuer.",
-  "Le succès, c'est la somme de petits efforts répétés jour après jour.",
-  "N'abandonne pas. Les résultats prennent du temps.",
-  "Ce n'est pas un régime, c'est un mode de vie.",
-  "Crois en toi et tu seras déjà à mi-chemin.",
-  "Chaque jour compte.",
+  "Un esprit sain dans un corps sain.",
+  "Trop facile le yoga !",
   "La sueur d'aujourd'hui est le sourire de demain.",
-  "Tu es plus forte que tu ne le penses.",
   "Un pas à la fois, mais toujours vers l'avant.",
+  "Tu va retourner ta séance de pilates !",
+  "Bientot le marathon ?",
+  "Ralenti, j'arrive déjà plus à courir aussi vite que toi !",
+  "Tu vas être la plus belle de ton club de yoga !",
+  "Je suis fier de toi !",
+  "Tout Hermès va être jaloux de toi !",
+  "Aujourd'hui, c'est grande Victoire !",
+  "Ceux qui vivent sont ceux qui luttent.",
+  "Réveille-toi avec détermination, endors-toi avec satisfaction.",
+  "Le seul mauvais entraînement est celui que tu ne fais pas.",
+  "No pain no gain.",
+  "Miaou miaou (c'est Rouxie qui t'encourage)",
 ]
 
 const DAY_LABELS = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
@@ -138,7 +137,7 @@ function blankEntry(date: string): DailyEntry {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function HomePage({ userId, userEmail, onLogout }: HomePageProps) {
+export default function HomePage({ userId, userEmail, onLogout, onNavigateToProgress }: HomePageProps) {
   const [entries, setEntries] = useState<Record<string, DailyEntry>>({})
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [editEntry, setEditEntry] = useState<DailyEntry | null>(null)
@@ -170,7 +169,7 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
   }, [currentMonthDate])
 
   const now = new Date()
-  const greeting = now.getHours() < 12 ? 'Bonjour' : now.getHours() < 18 ? 'Bon après-midi' : 'Bonsoir'
+  const greeting = now.getHours() < 12 ? 'Good morning' : now.getHours() < 18 ? 'Hello' : 'Hi'
   const displayName = userEmail
     .split('@')[0]
     .split(/[._-]/)[0]
@@ -303,15 +302,15 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
 
   return (
     <div className="min-h-screen pb-28">
-      <div className="px-4 pt-14 safe-top space-y-4">
+      <div className="px-4 pt-[calc(env(safe-area-inset-top)+6.5rem)] space-y-4">
         {/* ── Header ─────────────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2 pb-1">
           <div>
-            <p className="text-white/80 text-sm font-medium drop-shadow">
+            {/* <p className="text-white/80 text-sm font-medium drop-shadow">
               {now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-            </p>
+            </p> */}
             <h1 className="text-2xl font-bold text-white drop-shadow-md mt-0.5">
-              {greeting}, {displayName} 👋
+              {greeting} {displayName} 👋
             </h1>
           </div>
           <button
@@ -341,7 +340,10 @@ export default function HomePage({ userId, userEmail, onLogout }: HomePageProps)
         </div>
 
         {/* ── Weight gauge ───────────────────────────────────────────── */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+        <div 
+          className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg cursor-pointer active:scale-[0.98] transition-transform"
+          onClick={onNavigateToProgress}
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-semibold text-gray-700">⚖️ Objectif Poids</span>
             {latestWeight ? (
