@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import HomePage from '@/components/HomePage'
 import BottomNav, { type TabId } from '@/components/BottomNav'
+import PushNotificationManager from '@/components/PushNotificationManager'
 import AuthScreen from '@/components/AuthScreen'
 import ProgressPage from '@/components/ProgressPage'
+import ReglesPage from '@/components/ReglesPage'
 import type { User } from '@supabase/supabase-js'
 
 function Background() {
@@ -60,6 +62,7 @@ export default function App() {
   return (
     <div className="max-w-md mx-auto relative min-h-screen">
       <Background />
+      <PushNotificationManager userId={user.id} />
       {activeTab === 'home' && (
         <HomePage 
           userId={user.id} 
@@ -71,8 +74,11 @@ export default function App() {
       {activeTab === 'progress' && (
         <ProgressPage userId={user.id} />
       )}
+      {activeTab === 'regles' && (
+        <ReglesPage />
+      )}
       {/* Autres pages à venir */}
-      {['nutrition', 'sport', 'profile'].includes(activeTab) && (
+      {['nutrition', 'profile'].includes(activeTab) && (
         <div className="flex items-center justify-center min-h-screen">
           <p className="text-white text-lg font-medium drop-shadow-md">Page en construction 🚧</p>
         </div>

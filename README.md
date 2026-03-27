@@ -98,20 +98,10 @@ Done :
 	◦	Poids à renseigner manuellement 
   ◦	Page de suivi par graphique : poids
   ◦	Mensurations : bras taille hanche cuisse molet
+	◦	Page de conseils nutrition de Claude + regles
 
 To do:
 	◦	Notification motivation + rappel saisie 
-	◦	Page de conseils nutrition de Claude + regles
 	◦	Tracking conso eau (non)
 	◦	Photos avant/après (non)
 
-Règles alimentation :
-	⁃	1 dessert par semaine
-	⁃	1 repas cheatmeal par semaine
-	⁃	1 soirée alcoolisée par semaine
-	⁃	Zéro pain
-	⁃	Zéro entrée
-	⁃	Zéro fromage en dehors des plats
-	⁃	Zéro grignotage
-	⁃	Dessert : fruits illimités ou 1 morceau de chocolat
-	⁃	Petit déjeuner avant 9H

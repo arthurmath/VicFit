@@ -1,8 +1,8 @@
 import React from 'react'
-import { Home, Apple, Dumbbell, TrendingUp, User } from 'lucide-react'
+import { Home, Apple, Dumbbell, TrendingUp, User, BookOpenText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export type TabId = 'home' | 'nutrition' | 'sport' | 'progress' | 'profile'
+export type TabId = 'home' | 'nutrition' | 'regles' | 'progress' | 'profile'
 
 interface BottomNavProps {
   activeTab: TabId
@@ -12,7 +12,7 @@ interface BottomNavProps {
 const tabs: { icon: React.ElementType; label: string; id: TabId }[] = [
   { icon: Home, label: 'Accueil', id: 'home' },
   { icon: Apple, label: 'Nutrition', id: 'nutrition' },
-  { icon: Dumbbell, label: 'Sport', id: 'sport' },
+  { icon: BookOpenText, label: 'Règles', id: 'regles' },
   { icon: TrendingUp, label: 'Progrès', id: 'progress' },
   { icon: User, label: 'Profil', id: 'profile' },
 ]
