@@ -99,9 +99,9 @@ Done :
   ◦	Page de suivi par graphique : poids
   ◦	Mensurations : bras taille hanche cuisse molet
 	◦	Page de conseils nutrition de Claude + regles
+	◦	Notification motivation + rappel saisie 
 
 To do:
-	◦	Notification motivation + rappel saisie 
-	◦	Tracking conso eau (non)
-	◦	Photos avant/après (non)
+	◦	Tracking conso eau 
+	◦	Photos avant/après 
 

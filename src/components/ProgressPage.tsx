@@ -273,7 +273,7 @@ function MeasurementWidget({
       {/* Input Part */}
       <div className="pt-4 border-t border-gray-100">
         <form onSubmit={onSave} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">Date</label>
               <input 
