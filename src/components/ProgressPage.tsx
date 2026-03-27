@@ -207,7 +207,7 @@ function MeasurementWidget({
   }, [chartData, m.target])
 
   return (
-    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg flex flex-col gap-4">
+    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg flex flex-col gap-4 min-w-0">
       {/* Chart Part */}
       <div>
         <div className="flex items-center justify-between mb-6">
@@ -271,10 +271,10 @@ function MeasurementWidget({
       </div>
 
       {/* Input Part */}
-      <div className="pt-4 border-t border-gray-100">
-        <form onSubmit={onSave} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-1.5">
+      <div className="pt-4 border-t border-gray-100 min-w-0">
+        <form onSubmit={onSave} className="space-y-4 min-w-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 min-w-0">
+            <div className="space-y-1.5 min-w-0">
               <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">Date</label>
               <input 
                 type="date" 
@@ -282,10 +282,10 @@ function MeasurementWidget({
                 max={localDate()}
                 value={inputDate}
                 onChange={(e) => onDateChange(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                className="w-full max-w-full block bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500/50 appearance-none min-w-0"
               />
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 min-w-0">
               <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">{m.label} ({m.unit})</label>
               <input 
                 type="number" 
@@ -294,7 +294,7 @@ function MeasurementWidget({
                 placeholder="ex: 0.0"
                 value={inputValue}
                 onChange={(e) => onInputChange(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                className="w-full max-w-full block bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500/50 min-w-0"
               />
             </div>
           </div>
