@@ -97,13 +97,13 @@ Done :
 	◦	Semainier avec indicateur de performance : vert si que des repas sains, jaune avec emoji alcool pour le jour de soirée, rouge si craquage
 	◦	Poids à renseigner manuellement 
   ◦	Page de suivi par graphique : poids
+  ◦	Mensurations : bras taille hanche cuisse molet
 
 To do:
 	◦	Notification motivation + rappel saisie 
 	◦	Page de conseils nutrition de Claude + regles
-	◦	Tracking conso eau
-  ◦	Mensurations ?
-	◦	Photos avant/après 
+	◦	Tracking conso eau (non)
+	◦	Photos avant/après (non)
 
 Règles alimentation :
 	⁃	1 dessert par semaine
