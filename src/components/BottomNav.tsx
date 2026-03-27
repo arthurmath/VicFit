@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, Apple, Dumbbell, TrendingUp, User, BookOpenText } from 'lucide-react'
+import { Home, Apple, TrendingUp, User, BookOpenText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export type TabId = 'home' | 'nutrition' | 'regles' | 'progress' | 'profile'
