@@ -78,7 +78,7 @@ export default function App() {
         <ReglesPage />
       )}
       {/* Autres pages à venir */}
-      {['nutrition', 'profile'].includes(activeTab) && (
+      {['nutrition'].includes(activeTab) && (
         <div className="flex items-center justify-center min-h-screen">
           <p className="text-white text-lg font-medium drop-shadow-md">Page en construction 🚧</p>
         </div>
