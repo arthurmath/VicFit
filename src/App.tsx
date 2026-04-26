@@ -6,6 +6,7 @@ import PushNotificationManager from '@/components/PushNotificationManager'
 import AuthScreen from '@/components/AuthScreen'
 import ProgressPage from '@/components/ProgressPage'
 import ReglesPage from '@/components/ReglesPage'
+import NutritionPage from '@/components/Nutrition'
 import type { User } from '@supabase/supabase-js'
 
 function Background() {
@@ -77,11 +78,8 @@ export default function App() {
       {activeTab === 'regles' && (
         <ReglesPage />
       )}
-      {/* Autres pages à venir */}
-      {['nutrition'].includes(activeTab) && (
-        <div className="flex items-center justify-center min-h-screen">
-          <p className="text-white text-lg font-medium drop-shadow-md">Page en construction 🚧</p>
-        </div>
+      {activeTab === 'nutrition' && (
+        <NutritionPage />
       )}
       
       <BottomNav activeTab={activeTab} onChange={setActiveTab} />

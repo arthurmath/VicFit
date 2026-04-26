@@ -31,7 +31,8 @@ interface HomePageProps {
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const TARGET_WEIGHT = 50
-const START_WEIGHT = 68
+const CHECKPOINT_WEIGHT = 60
+const START_WEIGHT = 70
 
 const QUOTES = [
   "Allez ma grande !",
@@ -300,9 +301,14 @@ export default function HomePage({ userId, userEmail, onLogout, onNavigateToProg
 
   // ── Derived values ─────────────────────────────────────────────────────
 
+  const weightPhase: 1 | 2 = latestWeight && latestWeight <= CHECKPOINT_WEIGHT ? 2 : 1
   const weightProgress = latestWeight
-    ? Math.max(0, Math.min(100, ((START_WEIGHT - latestWeight) / (START_WEIGHT - TARGET_WEIGHT)) * 100))
+    ? weightPhase === 1
+      ? Math.max(0, Math.min(100, ((START_WEIGHT - latestWeight) / (START_WEIGHT - CHECKPOINT_WEIGHT)) * 100))
+      : Math.max(0, Math.min(100, ((CHECKPOINT_WEIGHT - latestWeight) / (CHECKPOINT_WEIGHT - TARGET_WEIGHT)) * 100))
     : 0
+  const weightRangeStart = weightPhase === 1 ? START_WEIGHT : CHECKPOINT_WEIGHT
+  const weightRangeEnd = weightPhase === 1 ? CHECKPOINT_WEIGHT : TARGET_WEIGHT
 
   // ── Render ─────────────────────────────────────────────────────────────
 
@@ -367,8 +373,10 @@ export default function HomePage({ userId, userEmail, onLogout, onNavigateToProg
             />
           </div>
           <div className="flex justify-between mt-1.5">
-            <span className="text-xs text-gray-400">{START_WEIGHT} kg</span>
-            <span className="text-xs text-gray-400">🎯 {TARGET_WEIGHT} kg</span>
+            <span className="text-xs text-gray-400">{weightRangeStart} kg</span>
+            <span className="text-xs text-gray-400">
+              {weightPhase === 1 ? '🚩' : '🎯'} {weightRangeEnd} kg
+            </span>
           </div>
         </div>
 
