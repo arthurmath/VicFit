@@ -9,7 +9,7 @@ self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {}
   const title = data.title || 'VicFit'
   const options = {
-    body: data.body || 'C\'est l\'heure de tes informations !',
+    body: data.body || 'Entre tes infos du jour !',
     icon: '/icons/icon-192.png',
     badge: '/icons/icon-192.png',
     vibrate: [100, 50, 100],
