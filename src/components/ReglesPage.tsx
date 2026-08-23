@@ -191,7 +191,7 @@ export default function ReglesPage() {
           {[
             '1 dessert par semaine',
             '1 repas cheatmeal par semaine',
-            '1 soirée alcoolisée par semaine',
+            '2 soirées alcoolisées par semaine',
             'Zéro pain',
             'Zéro entrée',
             'Zéro fromage en dehors des plats',

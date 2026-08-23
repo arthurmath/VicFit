@@ -7,6 +7,7 @@ import AuthScreen from '@/components/AuthScreen'
 import ProgressPage from '@/components/ProgressPage'
 import ReglesPage from '@/components/ReglesPage'
 import NutritionPage from '@/components/Nutrition'
+import NicotinePage from '@/components/NicotinePage'
 import type { User } from '@supabase/supabase-js'
 
 function Background() {
@@ -71,6 +72,9 @@ export default function App() {
           onLogout={handleLogout} 
           onNavigateToProgress={() => setActiveTab('progress')}
         />
+      )}
+      {activeTab === 'nicotine' && (
+        <NicotinePage userId={user.id} />
       )}
       {activeTab === 'progress' && (
         <ProgressPage userId={user.id} />

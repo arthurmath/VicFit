@@ -130,7 +130,7 @@ function computeDayStatus(
   const isCheat = entry.lunch === 'cheatmeal' || entry.dinner === 'cheatmeal'
   if (isCheat && cheatmeals > 1) return 'red'
   if (entry.dessert && desserts > 1) return 'red'
-  if (entry.alcohol && alcoholDays > 1) return 'red'
+  if (entry.alcohol && alcoholDays > 2) return 'red'
 
   if (entry.alcohol) return 'yellow'
   if (isCheat || entry.dessert || entry.breakfast === 'pas_sain') return 'yellow'
@@ -241,7 +241,7 @@ export default function HomePage({ userId, userEmail, onLogout, onNavigateToProg
         if (isCheat) cm++
         if (e.dessert) ds++
         if (e.alcohol) al++
-        if (e.snacking || (isCheat && cm > 1) || (e.dessert && ds > 1) || (e.alcohol && al > 1)) {
+        if (e.snacking || (isCheat && cm > 1) || (e.dessert && ds > 1) || (e.alcohol && al > 2)) {
           lastBadDate = e.date
         }
       }

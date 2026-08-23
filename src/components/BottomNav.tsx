@@ -1,8 +1,8 @@
 import React from 'react'
-import { Home, Apple, TrendingUp, BookOpenText } from 'lucide-react'
+import { Home, Apple, TrendingUp, BookOpenText, Cigarette } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export type TabId = 'home' | 'progress' | 'nutrition' | 'regles'
+export type TabId = 'home' | 'nicotine' | 'progress' | 'nutrition' | 'regles'
 
 interface BottomNavProps {
   activeTab: TabId
@@ -11,6 +11,7 @@ interface BottomNavProps {
 
 const tabs: { icon: React.ElementType; label: string; id: TabId }[] = [
   { icon: Home, label: 'Accueil', id: 'home' },
+  { icon: Cigarette, label: 'Nicotine', id: 'nicotine' },
   { icon: TrendingUp, label: 'Progrès', id: 'progress' },
   { icon: Apple, label: 'Nutrition', id: 'nutrition' },
   { icon: BookOpenText, label: 'Règles', id: 'regles' },
@@ -19,7 +20,7 @@ const tabs: { icon: React.ElementType; label: string; id: TabId }[] = [
 export default function BottomNav({ activeTab, onChange }: BottomNavProps) {
   return (
     <div className="fixed bottom-0 left-0 right-0 safe-bottom bg-white/80 backdrop-blur-xl border-t border-gray-200/60 z-50">
-      <div className="flex items-center justify-around px-2 py-2">
+      <div className="flex items-center justify-around px-1 py-2">
         {tabs.map((tab) => {
           const Icon = tab.icon
           const isActive = activeTab === tab.id
@@ -28,7 +29,7 @@ export default function BottomNav({ activeTab, onChange }: BottomNavProps) {
               key={tab.id}
               onClick={() => onChange(tab.id)}
               className={cn(
-                'flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all active:scale-95',
+                'flex flex-col items-center gap-1 py-1 px-1.5 rounded-xl transition-all active:scale-95',
                 isActive ? 'text-teal-600' : 'text-gray-400',
               )}
             >
