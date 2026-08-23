@@ -43,6 +43,17 @@ export default function App() {
     await supabase.auth.signOut()
   }
 
+  const isNicotinePreview = new URLSearchParams(window.location.search).get('preview') === 'nicotine'
+  if (isNicotinePreview) {
+    return (
+      <div className="max-w-md mx-auto relative min-h-screen">
+        <Background />
+        <NicotinePage userId="preview" />
+        <BottomNav activeTab="nicotine" onChange={() => {}} />
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <div className="max-w-md mx-auto relative min-h-screen flex items-center justify-center">
