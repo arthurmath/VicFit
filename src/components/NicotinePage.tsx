@@ -116,7 +116,8 @@ function toMap(list: NicotineEntry[]): Record<string, NicotineEntry> {
 
 function nicotineGoal(date: string): number {
   const month = date.slice(0, 7)
-  if (month <= '2026-09') return 2
+  if (month <= '2026-08') return 3
+  if (month === '2026-09') return 2
   if (month === '2026-10') return 1
   return 0
 }
@@ -567,7 +568,7 @@ function TimeGraduation({ start, end }: { start: string | null; end: string | nu
     <div className="flex flex-col items-center">
       <div className="flex items-end gap-2">
         <div className="flex flex-col justify-between py-0.5 text-[10px] font-semibold text-gray-400 h-[132px]">
-          <span>00h</span>
+          <span>23h</span>
           <span>12h</span>
           <span>00h</span>
         </div>
@@ -578,7 +579,7 @@ function TimeGraduation({ start, end }: { start: string | null; end: string | nu
             {hasRange && (
               <div
                 className="absolute left-1/2 -translate-x-1/2 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.55)]"
-                style={{ top: `${startPct}%`, height: `${endPct - startPct}%` }}
+                style={{ top: `${100 - endPct}%`, height: `${endPct - startPct}%` }}
               />
             )}
           </div>
